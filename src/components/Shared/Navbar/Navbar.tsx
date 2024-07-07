@@ -28,7 +28,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import dynamic from "next/dynamic";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 
-const pages = ["Page", "Courses", "Shop", "Blog", "Login", "Dashboard"];
+const pages = ["Courses", "Shop", "Career", "Blog", "Login", "Dashboard"];
 const settings = ["Profile", "Account", "Dashboard"];
 
 // Define a custom interface extending JwtPayload
@@ -176,7 +176,14 @@ function Navbar({ session }: { session: UserProps | null }) {
       </AppBar>
       <AppBar
         position="static"
-        sx={{ backgroundColor: "#fcb900", py: "12px", boxShadow: 0 }}
+        sx={{
+          backgroundColor: "#fff",
+          py: "14px",
+          boxShadow: 0,
+          borderBottom: "1px solid lightgray",
+          color: "#132361",
+          fontWeight: "600",
+        }}
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
@@ -261,9 +268,8 @@ function Navbar({ session }: { session: UserProps | null }) {
                   sx={{
                     my: 2,
                     mx: 3,
-                    color: "white",
+                    color: "#132361",
                     display: "block",
-                    backgroundColor: "#fcb900",
                   }}
                 >
                   <Link href={page.toLocaleLowerCase()} key={page}>

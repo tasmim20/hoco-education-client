@@ -196,6 +196,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useCreateCourseMutation } from "@/redux/api/courseApi";
 import { modifyPayload } from "@/utils/modifyPayload";
+import toast from "react-hot-toast";
 
 const schema = z.object({
   courseName: z.string().min(1, "Course Name is required"),
@@ -251,6 +252,7 @@ const AddCourse = () => {
     try {
       const res = await createCourse(data).unwrap();
       console.log("Course created successfully:", res);
+      toast.success("Course created successfully");
       reset();
     } catch (err: any) {
       console.error("Failed to create course:", err);

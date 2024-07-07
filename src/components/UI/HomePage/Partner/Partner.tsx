@@ -11,7 +11,7 @@ import partner6 from "../../../../../public/assets/partner-6.webp";
 const Partner = () => {
   return (
     <Stack sx={{ backgroundColor: "#f9f9fc" }}>
-      <Grid container spacing={1} sx={{ my: "200px" }}>
+      <Grid container spacing={1} sx={{ my: "100px" }}>
         <Grid item xs={4} md={2}>
           <Box
             sx={{
