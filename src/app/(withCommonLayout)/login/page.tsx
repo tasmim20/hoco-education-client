@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 
@@ -21,6 +21,10 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
+import { getAccessToken } from "@/utils/token";
+import { CustomJwtPayload } from "@/components/Dashboard/SideBar/SideBar";
+import { verifyToken } from "@/utils/verifyToken";
 
 export type FormValues = {
   email: string;
@@ -43,6 +47,34 @@ const LoginPage = () => {
   const router = useRouter();
   const [loginError, setLoginError] = useState<string | null>(null);
 
+  const [userRole, setUserRole] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    const token = getAccessToken("accessToken");
+    const user: CustomJwtPayload | null = token ? verifyToken(token) : null;
+    const role = user?.role;
+    setUserRole(role);
+  }, []);
+
+  useEffect(() => {
+    if (userRole) {
+      switch (userRole) {
+        case "admin":
+          router.push("/dashboard/admin");
+          break;
+        case "user":
+          router.push("/dashboard/user");
+          break;
+        case "guest":
+          router.push("/dashboard/guest");
+          break;
+        default:
+          router.push("/dashboard");
+          break;
+      }
+    }
+  }, [userRole, router]);
+
   const onSubmit = async (data: FormValues) => {
     setLoginError(null); // Reset error state before each submission
     console.log(data);
@@ -50,9 +82,10 @@ const LoginPage = () => {
       const res = await loginUser(data);
       console.log(res);
       if (res.accessToken) {
-        alert(res.message);
+        toast.success("Successfully Login..!!!");
         localStorage.setItem("accessToken", res.accessToken);
-        router.push("/dashboard");
+        // router.push(`${res.role}`);
+        setUserRole(res.role);
       }
     } catch (err: any) {
       console.error("Login error:", err.message);
@@ -153,7 +186,7 @@ const LoginPage = () => {
                 fontSize="large"
                 onClick={() =>
                   signIn("google", {
-                    callbackUrl: "http://localhost:3000/dashboard",
+                    callbackUrl: "http://localhost:3000/courses",
                   })
                 }
               />
@@ -161,7 +194,7 @@ const LoginPage = () => {
                 fontSize="large"
                 onClick={() =>
                   signIn("github", {
-                    callbackUrl: "http://localhost:3000/dashboard",
+                    callbackUrl: "http://localhost:3000/courses",
                   })
                 }
               />

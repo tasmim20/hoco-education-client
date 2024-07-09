@@ -98,7 +98,7 @@ export default function CourseCard({ course }: { course: Course }) {
                 transition: "background-color 0.3s, color 0.3s",
               }}
             >
-              View Courses <ArrowRightAltIcon />
+              View Course <ArrowRightAltIcon />
             </Button>
           </Link>
         </CardContent>

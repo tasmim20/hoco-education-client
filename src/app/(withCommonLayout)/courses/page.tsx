@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import CourseCard from "@/components/CourseCard/CourseCard";
 import { Course } from "@/types";
 
@@ -14,7 +14,7 @@ const CoursePage = async () => {
   const courses: Course[] = await res.json();
 
   return (
-    <Box
+    <Container
       sx={{
         flexGrow: 1,
 
@@ -27,7 +27,7 @@ const CoursePage = async () => {
             item
             xs={12}
             sm={6}
-            md={3}
+            md={4}
             key={course._id}
             sx={{
               display: "flex",
@@ -39,7 +39,7 @@ const CoursePage = async () => {
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </Container>
   );
 };
 

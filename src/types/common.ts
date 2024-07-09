@@ -8,6 +8,8 @@ export type IMeta = {
   total: number;
 };
 
+// types.ts
+
 export type UserRole = keyof typeof USER_ROLE;
 
 export interface DrawerItem {

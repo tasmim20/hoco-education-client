@@ -13,7 +13,7 @@ import { JwtPayload } from "jwt-decode";
 import { useEffect, useState } from "react";
 
 // Define a custom interface extending JwtPayload
-interface CustomJwtPayload extends JwtPayload {
+export interface CustomJwtPayload extends JwtPayload {
   name?: string;
   email?: string;
   image?: string;

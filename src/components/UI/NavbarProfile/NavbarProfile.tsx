@@ -68,16 +68,10 @@ const NavbarProfile = ({ session }: { session: UserProps | null }) => {
                   user?.image ||
                   "/static/images/avatar/2.jpg"
                 }
-                // src={
-                //   (session?.user as CustomJwtPayload)?.image ||
-                //   (user as CustomJwtPayload)?.image ||
-                //   "/static/images/avatar/2.jpg"
-                // }
               />
             ) : (
               <AccountCircleIcon fontSize="large" sx={{ color: "#132361" }} />
             )}
-            {/* <AccountCircleIcon fontSize="large" sx={{ color: "#132361" }} /> */}
           </IconButton>
         </Tooltip>
         <Menu

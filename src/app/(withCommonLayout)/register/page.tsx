@@ -174,6 +174,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
 
 export type UserData = {
   name: string;
@@ -209,7 +210,7 @@ const RegisterPage = () => {
       const res = await registerUser(data);
       console.log(res);
       if (res.success) {
-        alert(res.message);
+        toast.success("Successfully registered..!!!");
         router.push("/login");
       }
     } catch (err: any) {

@@ -161,23 +161,24 @@
 // export default HomeSchooling;
 
 "use client";
-import {
-  Box,
-  Button,
-  Card,
-  Container,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Card, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import boy1 from "../../../../public/assets/about-1.webp";
 import boy2 from "../../../../public/assets/about-2.webp";
+import best from "../../../../public/assets/best.webp";
 import phone from "../../../../public/assets/download.svg";
 import Image from "next/image";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { keyframes } from "@emotion/react";
-import Circle from "./Circle";
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 const HomeSchooling = () => {
   return (
@@ -260,7 +261,7 @@ const HomeSchooling = () => {
           </Grid>
         </Grid>
         <Grid item xs={12} md={4} sx={{ mt: { xs: 4, md: 0 } }}>
-          <Box sx={{ marginLeft: { xs: 0, md: "80px" } }}>
+          <Box sx={{ marginLeft: { xs: 0, md: "80px" }, zIndex: 2 }}>
             <Image alt="group" src={boy2} layout="responsive" />
             <Card
               variant="outlined"
@@ -299,9 +300,32 @@ const HomeSchooling = () => {
               </Stack>
             </Card>
           </Box>
+          <Box
+            sx={{
+              width: 200,
+              height: 200,
+              borderRadius: "50%",
+              overflow: "hidden",
+              position: "relative",
+              mt: "-50px",
+
+              animation: `${rotate} 10s linear infinite`,
+              display: { xs: "none", md: "block" }, // Hide on smaller devices
+              zIndex: -1,
+            }}
+          >
+            <Image
+              alt="group"
+              src={best}
+              layout="fill"
+              objectFit="cover"
+              style={{ borderRadius: "50%" }}
+            />
+          </Box>
         </Grid>
       </Grid>
     </Stack>
   );
 };
+
 export default HomeSchooling;
