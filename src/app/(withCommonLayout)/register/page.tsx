@@ -332,7 +332,12 @@ const RegisterPage = () => {
               >
                 <Typography component="p" sx={{ pt: "10px", fontSize: 17 }}>
                   Already have an account?
-                  <Link href="login">Login</Link>
+                  <Link
+                    href="login"
+                    style={{ color: "#132361", fontWeight: 800 }}
+                  >
+                    Login
+                  </Link>
                 </Typography>
               </Stack>
             </form>

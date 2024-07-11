@@ -9,15 +9,20 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import SideBar from "../SideBar/SideBar";
-
-import Image from "next/image";
 import { Avatar, Button, Menu, MenuItem, Tooltip } from "@mui/material";
 import Link from "next/link";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { signOut } from "next-auth/react";
-import { getAccessToken, removeAccessToken } from "@/utils/token";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+
+import { getAccessToken } from "@/utils/token";
 import { JwtPayload } from "jwt-decode";
 import { verifyToken } from "@/utils/verifyToken";
+import dynamic from "next/dynamic";
+
+const NavbarProfile = dynamic(
+  () => import("@/components/UI/NavbarProfile/NavbarProfile"),
+  { ssr: false }
+);
 
 const settings = ["Profile", "Account", "Dashboard"];
 
@@ -27,6 +32,7 @@ interface CustomJwtPayload extends JwtPayload {
   image?: string;
 }
 
+const drawerWidth = 240;
 type UserProps = {
   user?: {
     name?: string | null | undefined;
@@ -35,19 +41,25 @@ type UserProps = {
   };
 };
 
-const drawerWidth = 240;
-export default function DashboardDrawer({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DashboardDrawer(
+  {
+    children,
+  }: {
+    children: React.ReactNode;
+  },
+  { session }: { session: UserProps | null }
+) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  const [user, setUser] = React.useState<CustomJwtPayload | null>(null);
 
-  // const token = getAccessToken();
-
-  // const user = token ? (verifyToken(token) as CustomJwtPayload) : null;
-  // console.log(user);
+  React.useEffect(() => {
+    const token = getAccessToken("accessToken");
+    const verifiedUser = token
+      ? (verifyToken(token) as CustomJwtPayload)
+      : null;
+    setUser(verifiedUser);
+  }, []);
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -60,6 +72,7 @@ export default function DashboardDrawer({
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   const handleDrawerClose = () => {
     setIsClosing(true);
     setMobileOpen(false);
@@ -74,14 +87,6 @@ export default function DashboardDrawer({
       setMobileOpen(!mobileOpen);
     }
   };
-  // const handleLogout = async () => {
-  //   if (session?.user) {
-  //     await signOut(); // For OAuth users (Google, GitHub)
-  //   } else if (user) {
-  //     removeAccessToken();
-  //     await signOut({ callbackUrl: "/login" }); // For email/password users
-  //   }
-  // };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -105,13 +110,43 @@ export default function DashboardDrawer({
           >
             <MenuIcon />
           </IconButton>
-          <Box>
-            <Typography color="lightgray" variant="h6" noWrap component="div">
-              Hi, Tasmim Rahman
-            </Typography>
-            <Typography color="lightgray" variant="h6" noWrap component="div">
-              Welcome To, HOCO Home Schooling
-            </Typography>
+          {user && (
+            <Box sx={{ flexGrow: 1 }}>
+              <Typography color="lightgray" variant="h6" noWrap component="div">
+                Hi, {user.name}
+              </Typography>
+              <Typography color="lightgray" variant="h6" noWrap component="div">
+                Welcome Here
+              </Typography>
+            </Box>
+          )}
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <IconButton color="inherit">
+              <NotificationsIcon />
+            </IconButton>
+            <NavbarProfile session={session} />
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
           </Box>
         </Toolbar>
       </AppBar>
@@ -136,7 +171,7 @@ export default function DashboardDrawer({
             },
           }}
         >
-          <SideBar /> <SideBar />
+          <SideBar />
         </Drawer>
         <Drawer
           variant="permanent"

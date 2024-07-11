@@ -9,17 +9,15 @@
 // import Menu from "@mui/material/Menu";
 // import MenuIcon from "@mui/icons-material/Menu";
 // import Container from "@mui/material/Container";
-// import Button from "@mui/material/Button";
-// import Tooltip from "@mui/material/Tooltip";
+
 // import MenuItem from "@mui/material/MenuItem";
 // import Link from "next/link";
 // import { styled, alpha } from "@mui/material/styles";
 // import SearchIcon from "@mui/icons-material/Search";
 // import InputBase from "@mui/material/InputBase";
 // import { Stack, useMediaQuery, useTheme } from "@mui/material";
-// import { signOut } from "next-auth/react";
 // import { verifyToken } from "@/utils/verifyToken";
-// import { getAccessToken, removeAccessToken } from "@/utils/token";
+// import { getAccessToken } from "@/utils/token";
 // import { JwtPayload } from "jwt-decode";
 // import Part from "./Part";
 // import mainLogo from "../../../../public/assets/main-logo.svg";
@@ -31,9 +29,11 @@
 //   () => import("@/components/UI/NavbarProfile/NavbarProfile"),
 //   { ssr: false }
 // );
+// const AuthLinks = dynamic(() => import("@/components/UI/AuthLinks/AuthLinks"), {
+//   ssr: false,
+// });
 
-// const pages = ["Courses", "Shop", "Career", "Blog", "Contact"];
-// const settings = ["Profile", "Account", "Dashboard"];
+// const pages = ["Home", "Courses", "Shop", "Career", "Blog", "Contact"];
 
 // interface CustomJwtPayload extends JwtPayload {
 //   name?: string;
@@ -104,13 +104,10 @@
 //   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
 //   useEffect(() => {
-//     const token = getAccessToken("accessToken");
-//     const user: CustomJwtPayload | null = token
-//       ? (verifyToken(token) as CustomJwtPayload)
-//       : null;
-//     const role = user?.role;
-//     setUserRole(role);
-//   }, []);
+//     if (user && user.role) {
+//       setUserRole(user.role);
+//     }
+//   }, [user]);
 
 //   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
 //     setAnchorElNav(event.currentTarget);
@@ -127,7 +124,12 @@
 //     setAnchorElUser(null);
 //   };
 
-//   const isActive = (page: string) => pathname === `/${page.toLowerCase()}`;
+//   const isActive = (page: string) => {
+//     if (page === "Home") {
+//       return pathname === "/";
+//     }
+//     return pathname === `/${page.toLowerCase()}`;
+//   };
 
 //   const getDashboardLink = () => {
 //     switch (userRole) {
@@ -233,7 +235,10 @@
 //                 }}
 //               >
 //                 {pages.map((page) => (
-//                   <Link href={`/${page.toLocaleLowerCase()}`} key={page}>
+//                   <Link
+//                     href={page === "Home" ? "/" : `/${page.toLowerCase()}`}
+//                     key={page}
+//                   >
 //                     <MenuItem onClick={handleCloseNavMenu}>
 //                       <Typography
 //                         textAlign="center"
@@ -282,6 +287,9 @@
 //                     </MenuItem>
 //                   </Link>
 //                 )}
+//                 <Stack>
+//                   <AuthLinks />
+//                 </Stack>
 //               </Menu>
 //             </Box>
 
@@ -316,7 +324,10 @@
 //                     borderBottom: isActive(page) ? "2px solid" : "none",
 //                   }}
 //                 >
-//                   <Link href={`/${page.toLocaleLowerCase()}`} key={page}>
+//                   <Link
+//                     href={page === "Home" ? "/" : `/${page.toLowerCase()}`}
+//                     key={page}
+//                   >
 //                     {page}
 //                   </Link>
 //                 </Stack>
@@ -375,17 +386,14 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Link from "next/link";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
-import { signOut } from "next-auth/react";
 import { verifyToken } from "@/utils/verifyToken";
-import { getAccessToken, removeAccessToken } from "@/utils/token";
+import { getAccessToken } from "@/utils/token";
 import { JwtPayload } from "jwt-decode";
 import Part from "./Part";
 import mainLogo from "../../../../public/assets/main-logo.svg";
@@ -397,9 +405,11 @@ const NavbarProfile = dynamic(
   () => import("@/components/UI/NavbarProfile/NavbarProfile"),
   { ssr: false }
 );
+const AuthLinks = dynamic(() => import("@/components/UI/AuthLinks/AuthLinks"), {
+  ssr: false,
+});
 
 const pages = ["Home", "Courses", "Shop", "Career", "Blog", "Contact"];
-const settings = ["Profile", "Account", "Dashboard"];
 
 interface CustomJwtPayload extends JwtPayload {
   name?: string;
@@ -468,15 +478,14 @@ function Navbar({ session }: { session: UserProps | null }) {
   const [userRole, setUserRole] = useState<string | undefined>(undefined);
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    const token = getAccessToken("accessToken");
-    const user: CustomJwtPayload | null = token
-      ? (verifyToken(token) as CustomJwtPayload)
-      : null;
-    const role = user?.role;
-    setUserRole(role);
-  }, []);
+    setIsMounted(true);
+    if (user && user.role) {
+      setUserRole(user.role);
+    }
+  }, [user]);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -512,6 +521,11 @@ function Navbar({ session }: { session: UserProps | null }) {
         return "/dashboard";
     }
   };
+
+  // Prevent mismatches during initial render
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -656,6 +670,9 @@ function Navbar({ session }: { session: UserProps | null }) {
                     </MenuItem>
                   </Link>
                 )}
+                <Stack>
+                  <AuthLinks />
+                </Stack>
               </Menu>
             </Box>
 
@@ -727,6 +744,9 @@ function Navbar({ session }: { session: UserProps | null }) {
                   <Link href="/login">Login</Link>
                 </Stack>
               )}
+              {/* <Stack>
+                <AuthLinks />
+              </Stack> */}
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>

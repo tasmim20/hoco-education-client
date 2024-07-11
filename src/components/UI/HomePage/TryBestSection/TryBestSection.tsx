@@ -12,7 +12,8 @@ const TryBestSection = () => {
       sx={{
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
-        my: { xs: 8, md: 20 },
+        mt: { xs: 5, md: 15 },
+        mb: { xs: 2, md: 5 },
       }}
     >
       <Grid container spacing={20}>

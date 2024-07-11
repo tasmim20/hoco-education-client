@@ -1,13 +1,4 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import StarBorderPurple500OutlinedIcon from "@mui/icons-material/StarBorderPurple500Outlined";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import LinkIcon from "@mui/icons-material/Link";
 import { Box, Grid } from "@mui/material";
 import AllProductCard from "@/components/ProductCard/AllProductCard";
 

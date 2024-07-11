@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 import {
   Box,
@@ -12,7 +11,7 @@ import {
 } from "@mui/material";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 
@@ -23,8 +22,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import { getAccessToken } from "@/utils/token";
-import { CustomJwtPayload } from "@/components/Dashboard/SideBar/SideBar";
 import { verifyToken } from "@/utils/verifyToken";
+import { CustomJwtPayload } from "@/components/Dashboard/SideBar/SideBar";
 
 export type FormValues = {
   email: string;
@@ -46,52 +45,58 @@ const LoginPage = () => {
   });
   const router = useRouter();
   const [loginError, setLoginError] = useState<string | null>(null);
-
-  const [userRole, setUserRole] = useState<string | undefined>(undefined);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    const token = getAccessToken("accessToken");
-    const user: CustomJwtPayload | null = token ? verifyToken(token) : null;
-    const role = user?.role;
-    setUserRole(role);
+    setIsMounted(true);
   }, []);
-
-  useEffect(() => {
-    if (userRole) {
-      switch (userRole) {
-        case "admin":
-          router.push("/dashboard/admin");
-          break;
-        case "user":
-          router.push("/dashboard/user");
-          break;
-        case "guest":
-          router.push("/dashboard/guest");
-          break;
-        default:
-          router.push("/dashboard");
-          break;
-      }
-    }
-  }, [userRole, router]);
 
   const onSubmit = async (data: FormValues) => {
     setLoginError(null); // Reset error state before each submission
-    console.log(data);
     try {
       const res = await loginUser(data);
-      console.log(res);
+
       if (res.accessToken) {
         toast.success("Successfully Login..!!!");
         localStorage.setItem("accessToken", res.accessToken);
-        // router.push(`${res.role}`);
-        setUserRole(res.role);
+
+        const token = getAccessToken("accessToken");
+        const user = token ? (verifyToken(token) as CustomJwtPayload) : null;
+
+        if (user && user.role) {
+          console.log("User role:", user.role); // Logging the role
+
+          // Role-based redirection
+          switch (user.role) {
+            case "admin":
+              router.push("/dashboard/admin");
+              break;
+            case "instructor":
+              router.push("/dashboard/instructor");
+              break;
+            case "student":
+              router.push("/dashboard/student");
+              break;
+            default:
+              router.push("/shop");
+              break;
+          }
+        } else {
+          throw new Error("User information is missing or invalid");
+        }
+      } else {
+        throw new Error("Invalid login response");
       }
     } catch (err: any) {
       console.error("Login error:", err.message);
       setLoginError(err.message);
     }
   };
+
+  // Prevent mismatches during initial render
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <Container>
@@ -107,7 +112,7 @@ const LoginPage = () => {
             p: 8,
           }}
         >
-          <Typography variant="h5" fontWeight={100}>
+          <Typography variant="h5" fontWeight={600} sx={{ color: "#000" }}>
             Hi, Welcome Back
           </Typography>
 
@@ -161,8 +166,13 @@ const LoginPage = () => {
                 }}
               >
                 <Typography component="p" sx={{ fontSize: 17, mb: "5px" }}>
-                  Don't have an account?
-                  {} <Link href="register">Register</Link>
+                  Do not have an account?{" "}
+                  <Link
+                    href="/register"
+                    style={{ color: "#132361", fontWeight: 800 }}
+                  >
+                    Register
+                  </Link>
                 </Typography>
                 <Typography
                   sx={{ mt: "20px", fontWeight: "700" }}

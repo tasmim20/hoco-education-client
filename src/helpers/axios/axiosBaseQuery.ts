@@ -78,7 +78,7 @@ export const axiosBaseQuery =
       });
 
       // Log the full response for debugging
-      console.log("Full Response:", response);
+      // console.log("Full Response:", response);
 
       if (response.data) {
         return { data: response.data };

@@ -9,7 +9,7 @@ const AddToCart = ({ bookId }: { bookId: string }) => {
     <div>
       <Link href={`/shop/${bookId}`} passHref>
         <Button
-          component="a"
+          component="p"
           variant="outlined"
           fullWidth
           className="card-button"

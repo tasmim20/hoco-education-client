@@ -8,6 +8,9 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import PersonIcon from "@mui/icons-material/Person";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import AddIcon from "@mui/icons-material/Add";
+import PaymentIcon from "@mui/icons-material/Payment";
+import BookIcon from "@mui/icons-material/Book";
 
 export const drawerItems = (role: UserRole): DrawerItem[] => {
   const roleMenus: DrawerItem[] = [];
@@ -79,7 +82,7 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
         {
           title: "courses",
           path: `${role}/course`,
-          icon: DashboardIcon,
+          icon: BookIcon,
         },
         {
           title: "class",
@@ -87,9 +90,14 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           icon: LibraryBooksIcon,
         },
         {
+          title: "Add Review",
+          path: `${role}/add-review`,
+          icon: AddIcon,
+        },
+        {
           title: "Payment History",
           path: `${role}/payment-history`,
-          icon: DashboardIcon,
+          icon: PaymentIcon,
         }
       );
       break;

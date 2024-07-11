@@ -9,5 +9,5 @@ export const baseApi = createApi({
     baseUrl: "https://hoco-education-server.vercel.app/api/v1",
   }),
   endpoints: () => ({}),
-  tagTypes: ["courses", "instructors"],
+  tagTypes: ["courses", "instructors", "reviews"],
 });
