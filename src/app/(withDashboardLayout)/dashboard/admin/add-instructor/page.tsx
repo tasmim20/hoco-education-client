@@ -65,7 +65,7 @@ const AddInstructor = () => {
     try {
       const res = await createInstructor(data).unwrap();
       console.log("Instructor created successfully:", res);
-      // reset();
+      reset();
     } catch (err: any) {
       console.error("Failed to create instructor:", err);
     }
@@ -113,7 +113,7 @@ const AddInstructor = () => {
             <Typography fontWeight="700" variant="h5" component="h5">
               Add Instructor
             </Typography>
-            <Link href="instructors">
+            <Link href="instructor">
               <Button sx={{ bgcolor: "#132361" }}>
                 <VisibilityIcon sx={{ marginRight: "1px" }} /> View Instructors
               </Button>

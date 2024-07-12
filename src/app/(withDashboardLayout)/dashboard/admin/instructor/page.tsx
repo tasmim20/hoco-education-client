@@ -11,10 +11,13 @@ import {
   Avatar,
   CircularProgress,
   Container,
+  useTheme,
+  Box,
+  Button,
+  Stack,
+  Typography,
+  useMediaQuery,
 } from "@mui/material";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
-import { Box, Button, Stack, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -42,7 +45,7 @@ interface InstructorData {
   education: string;
   department: string;
   designation: string;
-  // Add other properties as per your data structure
+  image?: string;
 }
 
 const columns: Column[] = [
@@ -66,7 +69,7 @@ export default function Instructor() {
     React.useState<InstructorData | null>(null);
 
   const [showModal, setShowModal] = React.useState(false);
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = React.useState<InstructorData>({
     _id: "",
     firstName: "",
     lastName: "",
@@ -110,7 +113,7 @@ export default function Instructor() {
       education: instructor.education,
       department: instructor.department,
       designation: instructor.designation,
-      // Add other properties as needed
+      image: instructor.image,
     });
     setShowModal(true);
   };
@@ -154,7 +157,7 @@ export default function Instructor() {
     }));
   };
 
-  const handleDelete = async (id: any) => {
+  const handleDelete = async (id: string) => {
     try {
       await deleteInstructor(id);
       refetch();
@@ -215,7 +218,7 @@ export default function Instructor() {
         onClose={handleCloseModal}
         instructor={selectedInstructor}
         onUpdate={handleUpdate}
-        onChange={handleChange} // Pass handleChange function here
+        onChange={handleChange}
       /> */}
       <Stack
         sx={{
@@ -243,7 +246,7 @@ export default function Instructor() {
             <TableBody>
               {instructors
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row: any) => {
+                .map((row: InstructorData) => {
                   return (
                     <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
                       <TableCell key="Photo" align="left">
@@ -255,9 +258,6 @@ export default function Instructor() {
                       <TableCell key="email" align="left">
                         {row.email}
                       </TableCell>
-                      {/* <TableCell key="joiningDate" align="left">
-                        {row.joiningDate}
-                      </TableCell> */}
                       <TableCell key="mobileNumber" align="left">
                         {row.mobileNumber}
                       </TableCell>
@@ -271,13 +271,17 @@ export default function Instructor() {
                         {row.designation}
                       </TableCell>
                       <TableCell key="actions" align="center">
-                        {/* <Button
-                          sx={{ mx: "5px", px: "-10px", bgcolor: "#132361" }}
+                        <Button
+                          sx={{
+                            mx: "5px",
+                            mb: "5px",
+                            px: "-10px",
+                            bgcolor: "#132361",
+                          }}
                           aria-label="edit"
-                          onClick={() => handleOpenModal(row)}
                         >
                           <EditIcon />
-                        </Button> */}
+                        </Button>
 
                         <Button
                           aria-label="delete"

@@ -8,12 +8,16 @@ import {
   TextField,
   Typography,
   Alert,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
+import LazyGif from "../../../../public/assets/coming2.gif"; // Assuming lazy.gif is located in the public folder
+import Image from "next/image";
 
 import { loginUser } from "@/utils/actions/loginUser";
 import { useForm } from "react-hook-form";
@@ -36,6 +40,8 @@ const validationSchema = z.object({
 });
 
 const LoginPage = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const {
     register,
     handleSubmit,
@@ -99,118 +105,155 @@ const LoginPage = () => {
   }
 
   return (
-    <Container>
+    <Container sx={{ mt: isMobile ? 5 : 0 }}>
       <Stack
-        sx={{ height: "100vh", justifyContent: "center", alignItems: "center" }}
+        sx={{
+          minHeight: "100vh",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-        <Box
-          sx={{
-            maxWidth: 500,
-            width: "100%",
-            boxShadow: 1,
-            borderRadius: 1,
-            p: 8,
-          }}
-        >
-          <Typography variant="h5" fontWeight={600} sx={{ color: "#000" }}>
-            Hi, Welcome Back
-          </Typography>
-
-          <Box>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Grid container spacing={2}>
-                <Grid item md={12} sm={12} xs={12}>
-                  <TextField
-                    {...register("email")}
-                    sx={{ mt: 4 }}
-                    label="Email"
-                    type="email"
-                    variant="outlined"
-                    size="small"
-                    fullWidth={true}
-                    error={!!errors.email}
-                    helperText={errors.email?.message}
-                  />
-                </Grid>
-                <Grid item md={12} sm={12} xs={12}>
-                  <TextField
-                    {...register("password")}
-                    sx={{ my: 2 }}
-                    label="Password"
-                    type="password"
-                    variant="outlined"
-                    size="small"
-                    fullWidth={true}
-                    error={!!errors.password}
-                    helperText={errors.password?.message}
-                  />
-                </Grid>
-              </Grid>
-              {loginError && (
-                <Alert severity="error" sx={{ my: 2 }}>
-                  {loginError}
-                </Alert>
-              )}
-              <Button
-                type="submit"
-                sx={{ my: 2, backgroundColor: "#132361" }}
-                fullWidth={true}
-              >
-                Login
-              </Button>
-              <Stack
-                sx={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  py: "10px",
-                }}
-              >
-                <Typography component="p" sx={{ fontSize: 17, mb: "5px" }}>
-                  Do not have an account?{" "}
-                  <Link
-                    href="/register"
-                    style={{ color: "#132361", fontWeight: 800 }}
-                  >
-                    Register
-                  </Link>
-                </Typography>
-                <Typography
-                  sx={{ mt: "20px", fontWeight: "700" }}
-                  component="p"
-                >
-                  Or Sign Up Using
-                </Typography>
-              </Stack>
-            </form>
-
-            <Stack
-              direction="row"
-              spacing={2}
+        <Grid container spacing={4} alignItems="center" justifyContent="center">
+          <Grid item xs={12} md={6}>
+            <Box
               sx={{
-                justifyContent: "center",
+                display: "flex",
+                flexDirection: "column",
                 alignItems: "center",
-                direction: "flex",
+                justifyContent: "center",
+                height: "100%",
+                textAlign: "center",
               }}
             >
-              <GoogleIcon
-                fontSize="large"
-                onClick={() =>
-                  signIn("google", {
-                    callbackUrl: "http://localhost:3000/courses",
-                  })
-                }
-              />
-              <GitHubIcon
-                fontSize="large"
-                onClick={() =>
-                  signIn("github", {
-                    callbackUrl: "http://localhost:3000/courses",
-                  })
-                }
-              />
-            </Stack>
-          </Box>
-        </Box>
+              <Image src={LazyGif} alt="Lazy GIF" width={300} height={300} />
+              <Typography variant="body2" sx={{ fontStyle: "italic", mt: 2 }}>
+                If you are lazy 😴 like me to create a new account😫 ,
+                <br /> then join using the following credentials:
+              </Typography>
+              <Typography variant="body2" sx={{ fontStyle: "italic" }}>
+                <strong>Student:</strong> tasmim20@gmail.com / 12345678
+              </Typography>
+              <Typography variant="body2" sx={{ fontStyle: "italic" }}>
+                <strong>Instructor:</strong> rahman20@gmail.com / 12345678
+              </Typography>
+              <Typography variant="body2" sx={{ fontStyle: "italic" }}>
+                <strong>Admin:</strong> tasmimrahman@gmail.com / 123456
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                maxWidth: 500,
+                width: "100%",
+                boxShadow: 1,
+                borderRadius: 1,
+                p: 5,
+                mb: 5,
+              }}
+            >
+              <Typography variant="h5" fontWeight={600} sx={{ color: "#000" }}>
+                Hi, Welcome Back
+              </Typography>
+
+              <Box>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <TextField
+                        {...register("email")}
+                        sx={{ mt: 4 }}
+                        label="Email"
+                        type="email"
+                        variant="outlined"
+                        size="small"
+                        fullWidth
+                        error={!!errors.email}
+                        helperText={errors.email?.message}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        {...register("password")}
+                        sx={{ my: 2 }}
+                        label="Password"
+                        type="password"
+                        variant="outlined"
+                        size="small"
+                        fullWidth
+                        error={!!errors.password}
+                        helperText={errors.password?.message}
+                      />
+                    </Grid>
+                  </Grid>
+                  {loginError && (
+                    <Alert severity="error" sx={{ my: 2 }}>
+                      {loginError}
+                    </Alert>
+                  )}
+                  <Button
+                    type="submit"
+                    sx={{ my: 2, backgroundColor: "#132361" }}
+                    fullWidth
+                  >
+                    Login
+                  </Button>
+                  <Stack
+                    sx={{
+                      justifyContent: "center",
+                      alignItems: "center",
+                      py: "10px",
+                    }}
+                  >
+                    <Typography component="p" sx={{ fontSize: 17, mb: "5px" }}>
+                      Do not have an account?{" "}
+                      <Link
+                        href="/register"
+                        style={{ color: "#132361", fontWeight: 800 }}
+                      >
+                        Register
+                      </Link>
+                    </Typography>
+                    <Typography
+                      sx={{ mt: "20px", fontWeight: "700" }}
+                      component="p"
+                    >
+                      Or Sign Up Using
+                    </Typography>
+                  </Stack>
+                </form>
+
+                <Stack
+                  direction="row"
+                  spacing={2}
+                  sx={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <GoogleIcon
+                    fontSize="large"
+                    onClick={() =>
+                      signIn("google", {
+                        callbackUrl:
+                          "https://hoco-education-client.vercel.app/shop",
+                      })
+                    }
+                  />
+                  <GitHubIcon
+                    fontSize="large"
+                    onClick={() =>
+                      signIn("github", {
+                        callbackUrl:
+                          "https://hoco-education-client.vercel.app/shop",
+                      })
+                    }
+                  />
+                </Stack>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
       </Stack>
     </Container>
   );
