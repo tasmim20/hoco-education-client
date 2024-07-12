@@ -274,7 +274,7 @@ export default function Instructor() {
                         <Button
                           sx={{
                             mx: "5px",
-                            mb: "5px",
+
                             px: "-10px",
                             bgcolor: "#132361",
                           }}

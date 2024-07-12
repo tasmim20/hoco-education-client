@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hoco School
 
-## Getting Started
+Hoco enhances Home Schooling with advanced SSR for optimal performance and SEO, offering a seamless, user-centric experience.
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Seamless Enrollment and Purchases**: Students can enroll in courses and buy educational books.
+- **Job Applications**: Job seekers can apply for positions directly through the platform.
+- **Secure Authentication**: Uses Next Auth for Google and GitHub login, and custom server for email-based signup and login.
+- **Custom Dashboards**: Separate dashboards for students, instructors, and admins to manage their respective activities.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: Next.js
+- **Styling**: Material-UI
+- **Animation**: Framer Motion
+- **State Management**: Redux Toolkit
+- **Authentication**: Next Auth
+- **Backend**: Custom server for authentication
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features
 
-## Learn More
+- **Student Features**:
 
-To learn more about Next.js, take a look at the following resources:
+  - Enroll in courses
+  - Purchase educational books
+  - Access personalized dashboard
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Admin Features**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+  - Manage users (students, instructors)
+  - Monitor site activities
+  - Oversee job applications
 
-## Deploy on Vercel
+- **Authentication**:
+  - Login with Google and GitHub(next auth)
+  - Email-based signup and login
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Installation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To get a local copy up and running, follow these simple steps:
+
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Run the server using `npm run dev`.

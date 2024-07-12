@@ -1,136 +1,3 @@
-// "use client";
-// import {
-//   Avatar,
-//   AvatarGroup,
-//   Box,
-//   Button,
-//   Container,
-//   Grid,
-//   Typography,
-// } from "@mui/material";
-// import Image from "next/image";
-// import banner from "../../../../../public/assets/banner-img.webp";
-
-// import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-
-// const HeroSection = () => {
-//   return (
-//     <Container
-//       sx={{
-//         display: "flex",
-//         flexDirection: { xs: "column", md: "row" },
-//         my: { xs: 8, md: 16 },
-//       }}
-//     >
-//       <Grid container spacing={20}>
-//         <Grid item xs={12} md={6}>
-//           <Box
-//             sx={{
-//               flex: 1,
-//               position: "relative",
-//               width: { xs: "100%", md: "700px" },
-//               top: { xs: 0, md: "-20px" },
-//               left: { xs: 0, md: "-100px" },
-//               mb: { xs: 4, md: 0 },
-//             }}
-//           >
-//             <Box>
-//               <Image alt="grid" src={banner} layout="responsive" />
-//             </Box>
-//           </Box>
-//         </Grid>
-//         <Grid item xs={12} md={6}>
-//           <Box
-//             sx={{
-//               flex: 1,
-//               position: "relative",
-//               width: { xs: "100%", md: "650px" },
-//               top: { xs: "-120px", md: "-20px" },
-//               textAlign: { xs: "left", md: "left" },
-//             }}
-//           >
-//             <Typography
-//               color="#132361"
-//               sx={{
-//                 fontSize: { xs: "2rem", md: "5rem" },
-//                 fontWeight: { xs: 800, md: 800 },
-//                 variant: { xs: "h3", md: "h1" },
-//               }}
-//               component="h1"
-//             >
-//               Hoco Is The Place{" "}
-//               <span style={{ color: "#ffC53A" }}>Where Kids Love</span> Learning
-//               More
-//             </Typography>
-//             <Typography
-//               color="#646464"
-//               sx={{
-//                 mt: 2,
-//                 fontSize: { xs: "1rem", md: "1.05rem" },
-//               }}
-//               variant="body1"
-//               component="p"
-//             >
-//               We’re proud to say that one of our students was XYZ, who studied
-//               for his London University law degree with Hoco – an inspiration to
-//               all home learners everywhere! Let’s join Hoco and start learning!
-//             </Typography>
-
-//             {/* <Box style={{ float: "left" }} sx={{ direction: "flex" }}>
-//               <AvatarGroup max={4} sx={{ marginTop: "20px" }}>
-//                 <Avatar
-//                   alt="student"
-//                   src="https://themes.hibotheme.com/hoco/wp-content/uploads/2023/01/client-4.webp"
-//                 />
-//                 <Avatar
-//                   alt="student"
-//                   src="https://themes.hibotheme.com/hoco/wp-content/uploads/2023/01/client-3.webp"
-//                 />
-//                 <Avatar
-//                   alt="student"
-//                   src="https://themes.hibotheme.com/hoco/wp-content/uploads/2023/01/client-2.webp"
-//                 />
-//                 <Avatar
-//                   alt="student"
-//                   src="https://themes.hibotheme.com/hoco/wp-content/uploads/2023/01/client-1.webp"
-//                 />
-//               </AvatarGroup>
-//             </Box> */}
-//             <Typography color="#646464" sx={{ my: 4, mx: 1 }}>
-//               <span
-//                 style={{
-//                   fontWeight: 800,
-//                   color: "#132361",
-//                   marginRight: "3px",
-//                 }}
-//               >
-//                 12K+
-//               </span>
-//               Students have enrolled already
-//             </Typography>
-//             <Button
-//               sx={{
-//                 py: 1,
-//                 backgroundColor: "#CDD4FB",
-//                 color: "#132361",
-//                 fontWeight: 600,
-//                 boxShadow: "none",
-//                 "&:hover": {
-//                   backgroundColor: "#ffC53A",
-//                 },
-//               }}
-//             >
-//               Explore Classes <ArrowRightAltIcon />
-//             </Button>
-//           </Box>
-//         </Grid>
-//       </Grid>
-//     </Container>
-//   );
-// };
-
-// export default HeroSection;
-
 "use client";
 import React from "react";
 import Box from "@mui/material/Box";
@@ -175,7 +42,7 @@ const HeroSection = () => {
       top: 100%; /* Start from the bottom */
     }
     to {
-      top: 20%; /* End at the center */
+      top: 15%; /* End at the center */
     }
   `;
 
@@ -416,16 +283,15 @@ const HeroSection = () => {
         </Grid>
       </Grid>
 
-      {/* Sun */}
       {/* <Box
         sx={{
           width: "50px",
           height: "50px",
-          backgroundColor: "#ffd700",
+          backgroundColor: "#132361",
           borderRadius: "50%",
           position: "absolute",
-          animation: `${sunRiseAnimation} 5s ease-in-out forwards`, // Apply animation
-          boxShadow: "0 0 50px #ffd700, 0 0 100px #ffd700, 0 0 150px #ffd700", // Radiating light effect
+          animation: `${sunRiseAnimation} 5s ease-in-out forwards`,
+          boxShadow: "0 0 50px #132361, 0 0 100px #132361, 0 0 150px #132361",
         }}
       ></Box> */}
     </Box>
