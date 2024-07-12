@@ -22,6 +22,7 @@ import shape4 from "../../../../public/assets/shape-4.webp";
 import emailIcon from "../../../../public/assets/email-1.svg";
 import phoneIcon from "../../../../public/assets/phone-call-1.svg";
 import locationIcon from "../../../../public/assets/your-location.svg";
+import Link from "next/link";
 
 const HeroSection = styled(Box)(({ theme }) => ({
   background: "linear-gradient(to right, #eff9ff, #f9f4fd, #fef1f5, #fef0ef)",
@@ -327,14 +328,16 @@ const ContactPage = () => {
               alignItems: "center",
             }}
           >
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{ bgcolor: "#132361", color: "red" }}
-              onClick={handleModalClose}
-            >
-              Go to Home
-            </Button>
+            <Link href="/">
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{ bgcolor: "#132361", color: "red" }}
+                onClick={handleModalClose}
+              >
+                Go to Home
+              </Button>
+            </Link>
           </Box>
         </Box>
       </Modal>

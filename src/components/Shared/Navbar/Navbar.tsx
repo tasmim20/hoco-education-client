@@ -670,9 +670,9 @@ function Navbar({ session }: { session: UserProps | null }) {
                     </MenuItem>
                   </Link>
                 )}
-                <Stack>
+                {/* <Stack>
                   <AuthLinks />
-                </Stack>
+                </Stack> */}
               </Menu>
             </Box>
 

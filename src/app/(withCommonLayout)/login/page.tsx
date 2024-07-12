@@ -129,6 +129,9 @@ const LoginPage = () => {
               <Typography variant="body2" sx={{ fontStyle: "italic", mt: 2 }}>
                 If you are lazy 😴 like me to create a new account😫 ,
                 <br /> then join using the following credentials:
+                <Typography variant="body2" sx={{ fontStyle: "italic" }}>
+                  <strong>Admin:</strong> tasmimrahman@gmail.com / 123456
+                </Typography>
               </Typography>
               <Typography variant="body2" sx={{ fontStyle: "italic" }}>
                 <strong>Student:</strong> tasmim20@gmail.com / 12345678
@@ -136,20 +139,22 @@ const LoginPage = () => {
               <Typography variant="body2" sx={{ fontStyle: "italic" }}>
                 <strong>Instructor:</strong> rahman20@gmail.com / 12345678
               </Typography>
-              <Typography variant="body2" sx={{ fontStyle: "italic" }}>
-                <strong>Admin:</strong> tasmimrahman@gmail.com / 123456
-              </Typography>
             </Box>
           </Grid>
           <Grid item xs={12} md={6}>
             <Box
               sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
                 maxWidth: 500,
                 width: "100%",
                 boxShadow: 1,
                 borderRadius: 1,
                 p: 5,
                 mb: 5,
+                ...(isMobile && { mt: 5 }), // Added margin-top for mobile view
               }}
             >
               <Typography variant="h5" fontWeight={600} sx={{ color: "#000" }}>

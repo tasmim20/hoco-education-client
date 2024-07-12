@@ -11,6 +11,7 @@ import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import AddIcon from "@mui/icons-material/Add";
 import PaymentIcon from "@mui/icons-material/Payment";
 import BookIcon from "@mui/icons-material/Book";
+import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 
 export const drawerItems = (role: UserRole): DrawerItem[] => {
   const roleMenus: DrawerItem[] = [];
@@ -75,7 +76,7 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
     case USER_ROLE.STUDENT:
       roleMenus.push(
         {
-          title: "Dashboard",
+          title: "Overview",
           path: `${role}`,
           icon: DashboardIcon,
         },
@@ -88,6 +89,11 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           title: "class",
           path: `${role}/class`,
           icon: LibraryBooksIcon,
+        },
+        {
+          title: "Leaderboard",
+          path: `${role}/leaderboard`,
+          icon: LeaderboardIcon,
         },
         {
           title: "Add Review",

@@ -15,12 +15,6 @@ import {
   ListItemText,
   Avatar,
   Divider,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { motion } from "framer-motion";
@@ -74,19 +68,6 @@ const StudentPage: React.FC = () => {
   const enrolledCourses = [
     { name: "Lower Secondary", timeline: "Jan 2023 - Sep 2024" },
     { name: "Coding", timeline: "June 2024 - Present" },
-  ];
-
-  const leaderboard = [
-    { id: "S045", name: "Tasmim", position: 1 },
-    { id: "S032", name: "Rahman", position: 2 },
-    { id: "S031", name: "Rubina Akter", position: 3 },
-    { id: "S022", name: "Tina", position: 4 },
-    { id: "S012", name: "Rina", position: 5 },
-    { id: "S076", name: "Sweety", position: 6 },
-    { id: "S022", name: "Tina", position: 7 },
-    { id: "S456", name: "Tina", position: 8 },
-    { id: "S452", name: "Tina", position: 9 },
-    { id: "S010", name: "Tina", position: 10 },
   ];
 
   const assignments = 5;
@@ -258,74 +239,6 @@ const StudentPage: React.FC = () => {
         </Grid>
 
         {/* Leaderboard Section */}
-        <Grid item xs={12}>
-          <MotionPaper
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            sx={{ boxShadow: 0 }}
-          >
-            <Typography
-              variant="h6"
-              sx={{ marginBottom: 2, color: "#132361", fontWeight: 600 }}
-            >
-              Leaderboard Position
-            </Typography>
-            <TableContainer component={Paper}>
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell
-                      sx={{
-                        textAlign: "center",
-                        fontWeight: "bold",
-                        bgcolor: "#132361",
-                        color: "#fff",
-                      }}
-                    >
-                      Position
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        textAlign: "center",
-                        fontWeight: "bold",
-                        bgcolor: "#132361",
-                        color: "#fff",
-                      }}
-                    >
-                      Name
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        textAlign: "center",
-                        fontWeight: "bold",
-                        bgcolor: "#132361",
-                        color: "#fff",
-                      }}
-                    >
-                      ID
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {leaderboard.map((student) => (
-                    <TableRow key={student.position}>
-                      <TableCell sx={{ textAlign: "center" }}>
-                        {student.id}
-                      </TableCell>
-                      <TableCell sx={{ textAlign: "center" }}>
-                        {student.position}
-                      </TableCell>
-                      <TableCell sx={{ textAlign: "center" }}>
-                        {student.name}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </MotionPaper>
-        </Grid>
       </Grid>
     </Container>
   );
