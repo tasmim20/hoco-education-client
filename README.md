@@ -2,6 +2,10 @@
 
 Hoco enhances Home Schooling with advanced SSR for optimal performance and SEO, offering a seamless, user-centric experience.
 
+# live-link:
+
+https://hoco-education-client.vercel.app/
+
 ## Overview
 
 - **Seamless Enrollment and Purchases**: Students can enroll in courses and buy educational books.

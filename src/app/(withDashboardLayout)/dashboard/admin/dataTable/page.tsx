@@ -8,11 +8,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useGetAllCourseQuery } from "@/redux/api/courseApi";
+import { Box, CircularProgress, Container, Typography } from "@mui/material";
+import { Course } from "@/types";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: theme.palette.common.white,
+    color: theme.palette.common.black,
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
@@ -29,49 +32,76 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
-
 export default function DataTables() {
+  const { data, isLoading, isError } = useGetAllCourseQuery({});
+
+  if (isLoading) {
+    return (
+      <Container>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+            color: "#132361",
+          }}
+        >
+          <CircularProgress sx={{ color: "#132361" }} />
+        </Box>
+      </Container>
+    );
+  }
+
+  if (isError) {
+    return (
+      <Container>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <Typography variant="h6" color="error">
+            Failed to load courses.
+          </Typography>
+        </Box>
+      </Container>
+    );
+  }
   return (
     <TableContainer component={Paper} sx={{ my: "100px" }}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            <StyledTableCell>Course Name</StyledTableCell>
+            <StyledTableCell align="right">Instructor</StyledTableCell>
+            <StyledTableCell align="right">Students Enrolled</StyledTableCell>
+            <StyledTableCell align="right">Duration</StyledTableCell>
+            <StyledTableCell align="right">Status</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
-            </StyledTableRow>
-          ))}
+          {data &&
+            data.map((course: Course) => (
+              <StyledTableRow key={course.courseName}>
+                <StyledTableCell component="th" scope="row">
+                  {course.courseName}
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  {course.professorName}
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  {course.maximumStudents}
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  {course.courseDuration}
+                </StyledTableCell>
+                <StyledTableCell align="right">Active</StyledTableCell>
+              </StyledTableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
