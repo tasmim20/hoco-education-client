@@ -19,7 +19,7 @@ const HomePage = () => {
       <ParentSection />
       <Tailored />
       <Partner />
-      <AnotherHero />
+      {/* <AnotherHero /> */}
       <Work />
       <TryBestSection />
     </>

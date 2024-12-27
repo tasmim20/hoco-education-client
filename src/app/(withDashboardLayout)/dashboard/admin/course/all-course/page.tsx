@@ -189,6 +189,7 @@ import { Course } from "@/types";
 
 const AllCourse = () => {
   const { data, isLoading, isError } = useGetAllCourseQuery({});
+  console.log(data);
 
   // React.useEffect(() => {
   //   if (data) {
