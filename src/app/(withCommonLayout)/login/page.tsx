@@ -136,9 +136,6 @@ const LoginPage = () => {
               <Typography variant="body2" sx={{ fontStyle: "italic" }}>
                 <strong>Student:</strong> tasmim20@gmail.com / 12345678
               </Typography>
-              <Typography variant="body2" sx={{ fontStyle: "italic" }}>
-                <strong>Instructor:</strong> rahman20@gmail.com / 12345678
-              </Typography>
             </Box>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -154,7 +151,7 @@ const LoginPage = () => {
                 borderRadius: 1,
                 p: 5,
                 mb: 5,
-                ...(isMobile && { mt: 5 }), // Added margin-top for mobile view
+                ...(isMobile && { mt: 5 }),
               }}
             >
               <Typography variant="h5" fontWeight={600} sx={{ color: "#000" }}>
