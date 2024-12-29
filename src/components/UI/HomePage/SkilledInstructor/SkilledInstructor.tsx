@@ -93,6 +93,7 @@ const SkilledInstructors: React.FC = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           overflow: "hidden",
+          mb: 5,
         }}
       >
         <Container>
