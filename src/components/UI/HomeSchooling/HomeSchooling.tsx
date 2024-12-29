@@ -187,7 +187,8 @@ const HomeSchooling = () => {
         mx: { xs: 2, sm: 4, md: 8, lg: 20 },
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
-        my: { xs: 4, sm: 5, md: 6 },
+        mb: 1,
+        mt: 12,
       }}
     >
       <Grid container spacing={2}>
@@ -196,7 +197,7 @@ const HomeSchooling = () => {
             <Typography
               color="#132361"
               sx={{
-                fontSize: { xs: "2rem", md: "4rem" },
+                fontSize: { xs: "2rem", md: "3rem" },
                 fontWeight: 800,
                 lineHeight: 1.2,
               }}

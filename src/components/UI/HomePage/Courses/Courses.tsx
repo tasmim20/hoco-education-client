@@ -1,8 +1,7 @@
-"use";
-import { Box, Container, Grid, Button, Stack, Typography } from "@mui/material";
+import { Box, Grid, Button, Stack, Typography } from "@mui/material";
 import CourseCard from "@/components/CourseCard/CourseCard";
 import { Course } from "@/types";
-import { useState } from "react";
+
 import Link from "next/link";
 
 const CoursePage = async () => {
@@ -20,7 +19,7 @@ const CoursePage = async () => {
     <Stack
       sx={{
         flexGrow: 1,
-        my: "50px",
+
         mx: 5,
       }}
     >
@@ -28,12 +27,13 @@ const CoursePage = async () => {
         color="#132361"
         sx={{
           textAlign: "center",
-          fontSize: { xs: "2rem", md: "3.5rem" },
+          fontSize: { xs: "2rem", md: "3rem" },
           fontWeight: { xs: 800, md: 800 },
 
-          variant: { xs: "h3", md: "h1" },
+          variant: { xs: "h3", md: "h2" },
           lineHeight: { xs: "1", md: "1" },
-          my: 10,
+          mt: 7,
+          mb: 5,
         }}
         component="h1"
       >

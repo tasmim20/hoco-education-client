@@ -2,8 +2,6 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import banner from "../../../../../public/assets/information-img.webp";
-
-import { useState } from "react";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 const ParentSection = () => {
@@ -12,7 +10,8 @@ const ParentSection = () => {
       sx={{
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
-        my: { xs: 8, md: 10 },
+        mb: 3,
+        mt: 5,
       }}
     >
       <Grid container spacing={20}>
@@ -39,7 +38,7 @@ const ParentSection = () => {
             >
               <Image
                 width={350}
-                height={350}
+                height={250}
                 alt="group"
                 src={banner}
                 style={{ width: "100%", height: "auto" }}
@@ -60,7 +59,7 @@ const ParentSection = () => {
             <Typography
               color="#132361"
               sx={{
-                fontSize: { xs: "2rem", md: "3.5rem" },
+                fontSize: { xs: "2rem", md: "3rem" },
                 fontWeight: { xs: 800, md: 800 },
 
                 variant: { xs: "h3", md: "h1" },

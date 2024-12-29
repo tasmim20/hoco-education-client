@@ -50,65 +50,65 @@ const Partner = () => {
   };
 
   return (
-    <div className="  max-w-7xl  mx-auto space-y-6  ">
-      <Stack
-        sx={{
-          backgroundColor: "#f9f9fc",
-          position: "relative",
-          py: 10,
-          my: 10,
-          overflow: "hidden",
-        }}
-      >
-        <Box
+    <div className="bg-[#f9f9fc]">
+      <div className="  max-w-7xl  mx-auto px-8  ">
+        <Stack
           sx={{
-            position: "absolute",
-            top: 10,
-            right: 10,
-            zIndex: 1,
+            position: "relative",
+            py: 10,
+            overflow: "hidden",
           }}
         >
-          <IconButton onClick={() => sliderRef.current?.slickPrev()}>
-            <ArrowBackIosIcon />
-          </IconButton>
-          <IconButton onClick={() => sliderRef.current?.slickNext()}>
-            <ArrowForwardIosIcon />
-          </IconButton>
-        </Box>
-        <Slider ref={sliderRef} {...settings}>
-          {[
-            partner1,
-            partner2,
-            partner3,
-            partner4,
-            partner5,
-            partner6,
-            partner1,
-            partner2,
-          ].map((partner, index) => (
-            <Box
-              key={index}
-              sx={{
-                width: "100%",
-                height: "auto",
-                maxWidth: "160px",
-                mx: "auto",
-                px: 1,
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <Image
-                alt={`partner-${index + 1}`}
-                src={partner}
-                width={170}
-                height={170}
-                style={{ maxWidth: "100%", height: "auto" }}
-              />
-            </Box>
-          ))}
-        </Slider>
-      </Stack>
+          <Box
+            sx={{
+              position: "absolute",
+              top: 10,
+              right: 10,
+              zIndex: 1,
+            }}
+          >
+            <IconButton onClick={() => sliderRef.current?.slickPrev()}>
+              <ArrowBackIosIcon />
+            </IconButton>
+            <IconButton onClick={() => sliderRef.current?.slickNext()}>
+              <ArrowForwardIosIcon />
+            </IconButton>
+          </Box>
+          <Slider ref={sliderRef} {...settings}>
+            {[
+              partner1,
+              partner2,
+              partner3,
+              partner4,
+              partner5,
+              partner6,
+              partner1,
+              partner2,
+            ].map((partner, index) => (
+              <Box
+                key={index}
+                sx={{
+                  width: "100%",
+                  height: "auto",
+                  maxWidth: "160px",
+                  mx: "auto",
+                  px: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Image
+                  alt={`partner-${index + 1}`}
+                  src={partner}
+                  width={170}
+                  height={170}
+                  style={{ maxWidth: "100%", height: "auto" }}
+                />
+              </Box>
+            ))}
+          </Slider>
+        </Stack>
+      </div>
     </div>
   );
 };

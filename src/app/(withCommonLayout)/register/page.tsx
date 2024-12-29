@@ -174,6 +174,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import bgImage from "../../../../public/assets/login2.jpg";
 import toast from "react-hot-toast";
 
 export type UserData = {
@@ -220,7 +221,33 @@ const RegisterPage = () => {
   };
 
   return (
-    <Container>
+
+<Box
+sx={{
+  position: "relative",
+  height: "115vh",
+  width: "100%",
+  backgroundImage: `url(${bgImage.src})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  overflow: "hidden",
+  pt:5
+ 
+}}
+>
+<Box
+  sx={{
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
+    backdropFilter: "blur(2px)",
+  }}
+/>
+
+<Container sx={{ position: "relative", zIndex: 1 }} >
       <Stack
         sx={{ height: "130vh", justifyContent: "center", alignItems: "center" }}
       >
@@ -228,9 +255,16 @@ const RegisterPage = () => {
           sx={{
             maxWidth: 500,
             width: "100%",
-            boxShadow: 1,
-            borderRadius: 1,
-            p: 8,
+           
+          
+            
+            boxShadow: 2,
+            border:1,
+           borderRadius:2,
+          borderColor:"#9999",
+      
+            p: 4,
+            mb:20
           }}
         >
           <Box>
@@ -345,6 +379,7 @@ const RegisterPage = () => {
         </Box>
       </Stack>
     </Container>
+</Box>
   );
 };
 

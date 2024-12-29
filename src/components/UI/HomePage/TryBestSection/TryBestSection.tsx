@@ -2,8 +2,6 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import banner from "../../../../../public/assets/the-best-img.webp";
-
-import { useState } from "react";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 const TryBestSection = () => {
@@ -12,8 +10,8 @@ const TryBestSection = () => {
       sx={{
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
-        mt: { xs: 5, md: 15 },
-        mb: { xs: 2, md: 5 },
+        mt: 10,
+        mb: 4,
       }}
     >
       <Grid container spacing={20}>
@@ -33,7 +31,7 @@ const TryBestSection = () => {
                 flex: 1,
                 position: "relative",
                 width: { xs: "100%", md: "500px" },
-                height: { xs: "auto", md: "auto" },
+
                 top: { xs: 0, md: "-20px" },
 
                 mb: { xs: 4, md: 0 },
@@ -41,10 +39,13 @@ const TryBestSection = () => {
             >
               <Image
                 width={350}
-                height={350}
+                height={200}
                 alt="group"
                 src={banner}
-                style={{ width: "100%", height: "auto" }}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                }}
               />
             </Box>
           </Box>
@@ -62,7 +63,7 @@ const TryBestSection = () => {
             <Typography
               color="#132361"
               sx={{
-                fontSize: { xs: "2rem", md: "3.5rem" },
+                fontSize: { xs: "2rem", md: "3rem" },
                 fontWeight: { xs: 800, md: 800 },
                 variant: { xs: "h3", md: "h1" },
                 lineHeight: { xs: "1.2", md: "1.2" },

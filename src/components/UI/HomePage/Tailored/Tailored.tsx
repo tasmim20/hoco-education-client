@@ -35,17 +35,18 @@ const cards = [
 
 const Tailored = () => {
   return (
-    <Stack sx={{ backgroundColor: "#f9f9fc", padding: 2 }}>
+    <Stack sx={{ backgroundColor: "#f9f9fc" }}>
       <Typography
         color="#132361"
         sx={{
           textAlign: "center",
-          fontSize: { xs: "2rem", md: "3.5rem" },
+          fontSize: { xs: "2rem", md: "3rem" },
           fontWeight: { xs: 800, md: 800 },
 
           variant: { xs: "h3", md: "h1" },
           lineHeight: { xs: "1", md: "1" },
-          my: 10,
+          mt: 8,
+          mb: 2,
         }}
         component="h1"
       >
@@ -61,7 +62,7 @@ const Tailored = () => {
                   transition: "transform 0.2s",
                   boxShadow: "none",
                   textAlign: "center",
-                  mx: "20px",
+                  mx: "10px",
                   "&:hover": {
                     transform: "scale(1.05)",
                     backgroundColor: "#ffff",

@@ -38,6 +38,8 @@ const AuthButton = ({ session }: { session: UserProps | null }) => {
         <Button sx={{ color: "#d50000" }} variant="text" onClick={handleLogout}>
           logout
         </Button>
+        
+     
       ) : (
         <Link href="login">login</Link>
       )}

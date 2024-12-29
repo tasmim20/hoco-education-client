@@ -29,7 +29,7 @@ type UserProps = {
     image?: string | null | undefined;
   };
 };
-const settings = ["Profile", "Account"];
+const settings = ["Profile"];
 const NavbarProfile = ({ session }: { session: UserProps | null }) => {
   const token = getAccessToken("accessToken");
   const user = token ? (verifyToken(token) as CustomJwtPayload) : null;
@@ -90,16 +90,16 @@ const NavbarProfile = ({ session }: { session: UserProps | null }) => {
           open={Boolean(anchorElUser)}
           onClose={handleCloseUserMenu}
         >
-          {/* {settings.map((setting) => (
+          {settings.map((setting) => (
             <Link href={setting.toLocaleLowerCase()} key={setting}>
               <MenuItem key={setting} onClick={handleCloseUserMenu}>
                 <Typography textAlign="center">{setting}</Typography>
               </MenuItem>
             </Link>
-          ))} */}
+          ))}
 
           <Box sx={{ px: "13px" }}>
-            <AuthButton session={session} />
+            <AuthButton session={session} />.
           </Box>
         </Menu>
       </Box>

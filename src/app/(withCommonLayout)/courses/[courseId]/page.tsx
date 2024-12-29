@@ -22,11 +22,13 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import AvaliableTimes from "./AvaliableTimes";
 
 const CourseDetailPage = (props: any) => {
   const [course, setCourse] = useState<any>(null);
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | false>("panel1");
+
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -52,6 +54,7 @@ const CourseDetailPage = (props: any) => {
     fetchCourse();
   }, [props.params.courseId]);
 
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -59,9 +62,7 @@ const CourseDetailPage = (props: any) => {
   const handleClose = () => {
     setOpen(false);
   };
-  const handleEnrollClick = () => {
-    toast.success("Congratulation, You have successfully enrolled!");
-  };
+
   const handleBookmarkClick = () => {
     toast.success("Successfully Added in Bookmark!");
   };
@@ -374,73 +375,8 @@ const CourseDetailPage = (props: any) => {
         </DialogContent>
       </Dialog>
 
-      <Typography
-        color={"#132361"}
-        variant="h5"
-        sx={{
-          fontWeight: "700",
-          fontSize: "30px",
-          textAlign: "center",
-          my: "28px",
-        }}
-        component="h1"
-      >
-        Available Times
-      </Typography>
       <Grid container spacing={2}>
-        {timeSlots.map((slot: any, index: any) => (
-          <Grid item xs={12} sm={6} md={3} key={index} sx={{ mb: "32px" }}>
-            <Card
-              sx={{
-                padding: 2,
-                borderRadius: 2,
-                boxShadow: 0,
-                textAlign: "center",
-                border: "1px solid #e0e0e0",
-                transition: "background-color 0.3s",
-                "&:hover": {
-                  backgroundColor: "#132361",
-                  "& *": {
-                    color: "#fff",
-                  },
-                },
-              }}
-            >
-              <CardContent>
-                <Typography
-                  sx={{ color: "#132361", mt: "14px" }}
-                  variant="h6"
-                  fontWeight="600"
-                >
-                  {slot.date}
-                </Typography>
-                <Typography variant="body1">{slot.duration}</Typography>
-                <Typography variant="body1">{slot.day}</Typography>
-                <Typography variant="body1">{slot.time}</Typography>
-                <Button
-                  onClick={handleEnrollClick}
-                  sx={{
-                    my: 3,
-                    py: 1.5,
-                    backgroundColor: "#CDD4FB",
-                    color: "#132361",
-                    fontWeight: 600,
-                    boxShadow: "none",
-                    transition: "background-color 0.3s, color 0.3s",
-                    "&:hover": {
-                      backgroundColor: "#fcb900",
-                      "& *": {
-                        color: "#fff",
-                      },
-                    },
-                  }}
-                >
-                  ENROLL Now <ArrowRightAltIcon />
-                </Button>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
+        <AvaliableTimes/>
       </Grid>
 
       <Box sx={{ marginTop: "50px" }}>
@@ -635,29 +571,3 @@ const CourseDetailPage = (props: any) => {
 
 export default CourseDetailPage;
 
-const timeSlots = [
-  {
-    date: "2024-07-10",
-    duration: "2 hours",
-    day: "Wednesday",
-    time: "10:00 AM - 12:00 PM",
-  },
-  {
-    date: "2024-07-11",
-    duration: "3 hours",
-    day: "Thursday",
-    time: "1:00 PM - 4:00 PM",
-  },
-  {
-    date: "2024-07-12",
-    duration: "1.5 hours",
-    day: "Friday",
-    time: "9:00 AM - 10:30 AM",
-  },
-  {
-    date: "2024-07-13",
-    duration: "2.5 hours",
-    day: "Saturday",
-    time: "2:00 PM - 4:30 PM",
-  },
-];
