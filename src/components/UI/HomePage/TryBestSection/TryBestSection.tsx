@@ -50,23 +50,26 @@ const TryBestSection = () => {
             <Typography
               color="#132361"
               sx={{
-                fontSize: { xs: "2rem", md: "3rem" },
+                fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
                 fontWeight: 800,
                 lineHeight: { xs: "1.2", md: "1.2" },
-                mb: 2, // Add margin at the bottom
+                mb: 2,
               }}
               component="h1"
             >
               Try Best
-              <span style={{ color: "#f66a1d" }}> One-On-One</span> Learning On
-              Hoco
+              <span style={{ color: "#f66a1d" }}>
+                {" "}
+                One-On-One <br />
+              </span>{" "}
+              Learning On Hoco
             </Typography>
             <Typography
               color="#646464"
               sx={{
                 mt: 2,
-                fontSize: { xs: "1rem", md: "1.125rem" },
-                mb: 3, // Add margin at the bottom
+                fontSize: { xs: "0.9rem", sm: "1rem", md: "1rem" },
+                mb: 3,
               }}
               variant="body1"
               component="p"
@@ -77,7 +80,7 @@ const TryBestSection = () => {
             </Typography>
             <Button
               sx={{
-                py: 1.5,
+                py: 1,
                 backgroundColor: "#CDD4FB",
                 color: "#132361",
                 fontWeight: 600,

@@ -161,7 +161,15 @@
 // export default HomeSchooling;
 
 "use client";
-import { Box, Button, Card, Grid, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import boy1 from "../../../../public/assets/about-1.webp";
 import boy2 from "../../../../public/assets/about-2.webp";
@@ -182,13 +190,12 @@ const rotate = keyframes`
 
 const HomeSchooling = () => {
   return (
-    <Stack
+    <Container
       sx={{
-        mx: { xs: 2, sm: 4, md: 8, lg: 20 },
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
         mb: 1,
-        mt: 12,
+        mt: 5,
       }}
     >
       <Grid container spacing={2}>
@@ -325,7 +332,7 @@ const HomeSchooling = () => {
           </Box>
         </Grid>
       </Grid>
-    </Stack>
+    </Container>
   );
 };
 

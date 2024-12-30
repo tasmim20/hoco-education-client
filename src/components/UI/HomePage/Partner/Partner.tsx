@@ -1,5 +1,5 @@
 "use client";
-import { Box, IconButton, Stack } from "@mui/material";
+import { Box, Container, IconButton, Stack } from "@mui/material";
 import Image from "next/image";
 import Slider from "react-slick";
 import { useRef } from "react";
@@ -50,12 +50,14 @@ const Partner = () => {
   };
 
   return (
-    <div className="bg-[#f9f9fc]">
-      <div className="  max-w-7xl  mx-auto px-8  ">
-        <Stack
+    <div className="bg-[#efeff3]">
+      <Container>
+        <Box
           sx={{
             position: "relative",
-            py: 10,
+            pt: 5,
+            pb: 8,
+
             overflow: "hidden",
           }}
         >
@@ -107,8 +109,8 @@ const Partner = () => {
               </Box>
             ))}
           </Slider>
-        </Stack>
-      </div>
+        </Box>
+      </Container>
     </div>
   );
 };

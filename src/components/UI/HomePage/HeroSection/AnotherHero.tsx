@@ -82,7 +82,7 @@ const Banner = () => {
                   />
                 </AvatarGroup>
               </Box>
-              <Typography sx={{ my: 4, mx: 2 }}>
+              <Typography sx={{ pt: 1, mx: 2, textAlign: "center" }}>
                 <span
                   style={{
                     fontWeight: 800,
@@ -90,7 +90,7 @@ const Banner = () => {
                     marginRight: "3px",
                   }}
                 >
-                  12K+
+                  1K+
                 </span>
                 Students have enrolled already
               </Typography>

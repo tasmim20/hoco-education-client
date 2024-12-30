@@ -57,7 +57,11 @@ export default function CourseCard({ course }: { course: Course }) {
           <Typography
             gutterBottom
             variant="h5" // Increase font size
-            sx={{ fontWeight: 700, fontSize: "26px", color: "#132361" }}
+            sx={{
+              fontWeight: 700,
+              fontSize: { xs: "1rem", sm: "1.2rem", md: "1.3rem" },
+              color: "#132361",
+            }}
             component="div"
           >
             {course.courseName}
@@ -65,7 +69,11 @@ export default function CourseCard({ course }: { course: Course }) {
           <Typography
             gutterBottom
             variant="body1" // Increase font size
-            sx={{ fontWeight: 400, fontSize: "16px", color: "text.secondary" }}
+            sx={{
+              fontWeight: 400,
+              fontSize: { xs: "0.9rem", sm: "1rem", md: "1rem" },
+              color: "text.secondary",
+            }}
             component="p"
           >
             {truncatedDetails}
@@ -90,7 +98,7 @@ export default function CourseCard({ course }: { course: Course }) {
               sx={{
                 mt: 4,
                 mb: 4,
-                py: 1.5,
+                py: 1,
                 backgroundColor: "#CDD4FB",
                 color: "#132361",
                 fontWeight: 600,

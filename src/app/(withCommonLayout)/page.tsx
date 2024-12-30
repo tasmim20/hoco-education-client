@@ -9,22 +9,25 @@ import TryBestSection from "@/components/UI/HomePage/TryBestSection/TryBestSecti
 import Work from "@/components/UI/HomePage/Work/Work";
 import HomeSchooling from "@/components/UI/HomeSchooling/HomeSchooling";
 import SkilledInstructors from "@/components/UI/HomePage/SkilledInstructor/SkilledInstructor";
+import StatsSection from "@/components/UI/HomePage/StatsSection/page";
+import StudentTestimonial from "@/components/UI/HomePage/StudentTestimonial/StudentTestimonial";
 
 const HomePage = () => {
   return (
     <>
       {/* <HeroSection /> */}
       <AnotherHero />
+      <StatsSection />
       <HomeSchooling />
       <Courses />
-
       <ParentSection />
       <Tailored />
-      <Partner />
-      <SkilledInstructors />
-      <Work />
 
+      <SkilledInstructors />
+      <StudentTestimonial />
+      <Work />
       <TryBestSection />
+      <Partner />
     </>
   );
 };

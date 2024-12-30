@@ -171,10 +171,9 @@ const Footer = () => {
         bgcolor: "#132361",
         color: "lightGray",
         py: { xs: 3, sm: 5 },
-        px: 10,
       }}
     >
-      <Box sx={{ color: "lightgray" }}>
+      <Container sx={{ color: "lightgray" }}>
         <Grid container spacing={6}>
           <Grid item xs={12} sm={6} md={3}>
             <Typography variant="h6" fontWeight="bold" mb={2}>
@@ -314,7 +313,7 @@ const Footer = () => {
             Copyright © 2024 HocoEdu. All rights reserved.
           </Typography>
         </Box>
-      </Box>
+      </Container>
     </Box>
   );
 };

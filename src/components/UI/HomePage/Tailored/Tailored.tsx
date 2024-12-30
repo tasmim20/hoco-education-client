@@ -40,7 +40,7 @@ const Tailored = () => {
         color="#132361"
         sx={{
           textAlign: "center",
-          fontSize: { xs: "2rem", md: "3rem" },
+          fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
           fontWeight: { xs: 800, md: 800 },
 
           variant: { xs: "h3", md: "h1" },
@@ -82,7 +82,7 @@ const Tailored = () => {
                   <Typography
                     sx={{
                       color: "#132361",
-                      fontSize: "1.7rem",
+                      fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" },
                       fontWeight: "600",
                     }}
                     gutterBottom

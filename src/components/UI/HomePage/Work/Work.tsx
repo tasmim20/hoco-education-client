@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import { Container } from "@mui/material";
 
 const data = [
   {
@@ -43,97 +44,102 @@ export default function Work() {
         },
       }}
     >
-      <Grid container spacing={2}>
-        {data.map((item, index) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={4}
-            key={index}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <Card
+      <Container>
+        <Grid container spacing={2}>
+          {data.map((item, index) => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={index}
               sx={{
-                minWidth: 275,
-                backgroundColor: "#272d7c",
-                boxShadow: "0",
-
-                color: "white",
                 display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                height: "100%",
-                py: 3,
-                px: 2,
+                justifyContent: "center",
               }}
             >
-              <CardContent>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontSize: "28px",
-                    lineHeight: "1.2", // Adjust line height for consistent spacing
-                    display: "-webkit-box",
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: "vertical",
-                    overflow: "hidden",
-                  }}
-                  component="div"
-                  fontWeight={700}
-                >
-                  {item.title}
-                </Typography>
+              <Card
+                sx={{
+                  minWidth: 275,
+                  backgroundColor: "#272d7c",
+                  boxShadow: "0",
 
-                <Typography
-                  color="#fff"
-                  sx={{
-                    mt: 2,
-                    fontSize: "17px",
-                  }}
-                  variant="body1"
-                  component="p"
-                >
-                  {item.details}
-                </Typography>
-                <Typography
-                  color="#fff"
-                  sx={{
-                    fontSize: "17px",
-                  }}
-                  variant="body1"
-                  component="p"
-                >
-                  {item.more}
-                </Typography>
-              </CardContent>
-              <CardActions sx={{ justifyContent: "center", mb: 1 }}>
-                <Button
-                  sx={{
-                    mb: 3,
-                    py: 1.5,
-                    px: 3,
-                    backgroundColor: "#CDD4FB",
-                    color: "#132361",
-                    fontWeight: 600,
-                    boxShadow: "none",
-                    "&:hover": {
-                      backgroundColor: "#132361",
-                      color: "#fff",
-                      boxShadow: "0",
-                    },
-                  }}
-                >
-                  {item.button} <ArrowRightAltIcon />
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+                  color: "white",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  height: "100%",
+                  py: 3,
+                  px: 2,
+                }}
+              >
+                <CardContent>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontSize: "25px",
+                      lineHeight: "1.2", // Adjust line height for consistent spacing
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                      color: "lightgray",
+                    }}
+                    component="div"
+                    fontWeight={700}
+                  >
+                    {item.title}
+                  </Typography>
+
+                  <Typography
+                    color="#fff"
+                    sx={{
+                      mt: 2,
+                      fontSize: { xs: "0.9rem", sm: "1rem", md: "1rem" },
+                      color: "lightgray",
+                    }}
+                    variant="body1"
+                    component="p"
+                  >
+                    {item.details}
+                  </Typography>
+                  <Typography
+                    color="#fff"
+                    sx={{
+                      fontSize: { xs: "0.9rem", sm: "1rem", md: "1rem" },
+                      color: "lightgray",
+                    }}
+                    variant="body1"
+                    component="p"
+                  >
+                    {item.more}
+                  </Typography>
+                </CardContent>
+                <CardActions sx={{ justifyContent: "center", mb: 1 }}>
+                  <Button
+                    sx={{
+                      mb: 3,
+                      py: 1,
+                      px: 3,
+                      backgroundColor: "#CDD4FB",
+                      color: "#132361",
+                      fontWeight: 600,
+                      boxShadow: "none",
+                      "&:hover": {
+                        backgroundColor: "#132361",
+                        color: "#fff",
+                        boxShadow: "0",
+                      },
+                    }}
+                  >
+                    {item.button} <ArrowRightAltIcon />
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
     </Box>
   );
 }

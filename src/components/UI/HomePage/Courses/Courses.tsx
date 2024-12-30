@@ -1,4 +1,4 @@
-import { Box, Grid, Button, Stack, Typography } from "@mui/material";
+import { Box, Grid, Button, Stack, Typography, Container } from "@mui/material";
 import CourseCard from "@/components/CourseCard/CourseCard";
 import { Course } from "@/types";
 
@@ -27,13 +27,13 @@ const CoursePage = async () => {
         color="#132361"
         sx={{
           textAlign: "center",
-          fontSize: { xs: "2rem", md: "3rem" },
-          fontWeight: { xs: 800, md: 800 },
+          fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
+          fontWeight: 800,
 
           variant: { xs: "h3", md: "h2" },
           lineHeight: { xs: "1", md: "1" },
-          mt: 7,
-          mb: 5,
+          mt: 5,
+          mb: 4,
         }}
         component="h1"
       >
@@ -41,38 +41,39 @@ const CoursePage = async () => {
         <span style={{ color: "#ffC53A" }}> Primary</span> To{" "}
         <span style={{ color: "#ffC53A" }}> A levels</span>
       </Typography>
-      <Grid container spacing={2}>
-        {courses.slice(0, 4).map((course) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={3}
-            key={course._id}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              marginBottom: "20px", // Decreased distance between cards
-            }}
-          >
-            <CourseCard course={course} key={course._id} />
-          </Grid>
-        ))}
-      </Grid>
+      <Container>
+        <Grid container spacing={2}>
+          {courses.slice(0, 4).map((course) => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={3}
+              key={course._id}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                marginBottom: "20px", // Decreased distance between cards
+              }}
+            >
+              <CourseCard course={course} key={course._id} />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
 
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
-          marginTop: "20px",
+          marginTop: "5px",
         }}
       >
         <Link href="/courses">
           <Button
             sx={{
-              mt: 1,
               mb: 6,
-              py: 1.5,
+              py: 1,
               backgroundColor: "#132361",
               color: "#fff",
               fontWeight: 600,

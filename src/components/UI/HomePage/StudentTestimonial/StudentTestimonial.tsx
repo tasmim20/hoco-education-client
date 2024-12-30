@@ -1,116 +1,179 @@
-// import * as React from "react";
-// import { useTheme } from "@mui/material/styles";
-// import Box from "@mui/material/Box";
-// import MobileStepper from "@mui/material/MobileStepper";
-// import Paper from "@mui/material/Paper";
-// import Typography from "@mui/material/Typography";
-// import Button from "@mui/material/Button";
-// import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-// import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-// import { Carousel } from "react-responsive-carousel";
-// import "react-responsive-carousel/lib/styles/carousel.min.css";
+"use client";
 
-// const images = [
-//   {
-//     label: "San Francisco – Oakland Bay Bridge, United States",
-//     imgPath:
-//       "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
-//   },
-//   {
-//     label: "Bird",
-//     imgPath:
-//       "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60",
-//   },
-//   {
-//     label: "Bali, Indonesia",
-//     imgPath:
-//       "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250",
-//   },
-//   {
-//     label: "Goč, Serbia",
-//     imgPath:
-//       "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60",
-//   },
-// ];
+import React, { useState, useEffect } from "react";
+import { Box, Typography, Avatar, Container, Grid } from "@mui/material";
+import bgImage from "../../../../../public/assets/backgorund4.png";
 
-// function StudentTestimonial() {
-//   const theme = useTheme();
-//   const [activeStep, setActiveStep] = React.useState(0);
-//   const maxSteps = images.length;
+const testimonials = [
+  {
+    name: "Tony Walker",
+    role: "Lower Secondary Student",
+    image:
+      "https://demo-themewinter.com/turitor/wp-content/uploads/2019/11/author2.png",
+    text: "I thoroughly enjoyed courses from here and hope to expand on my gained knowledge about making apps. The courses as well as the examples are well presented, easy to follow and engaging.",
+  },
+  {
+    name: "Martin Brian",
+    role: "Higher Secondary Student",
+    image:
+      "https://demo-themewinter.com/turitor/wp-content/uploads/2019/11/author3.png",
+    text: "The courses here exceeded my expectations in many regards, especially in the depth of information supplied.I learned key principles of design that I can implement immediately.",
+  },
+  {
+    name: "Emily Davis",
+    role: "A level course student",
+    image:
+      "https://demo-themewinter.com/turitor/wp-content/uploads/2019/11/author2.png",
+    text: "The platform was amazing. I could easily build my confidence with hands-on projects and I can implement immediately, the guidance provided throughout the learning process.",
+  },
+  {
+    name: "John Smith",
+    role: "A level course student",
+    image:
+      "https://demo-themewinter.com/turitor/wp-content/uploads/2019/11/author1.png",
+    text: "The courses were incredibly detailed and practical. I was able to apply what I learned right away implement immediately, and it has made a big difference in my work.",
+  },
+];
 
-//   const handleNext = () => {
-//     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-//   };
+const StudentTestimonial = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-//   const handleBack = () => {
-//     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-//   };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 2) % testimonials.length);
+    }, 5000); // Auto-slide every 5 seconds
+    return () => clearInterval(interval);
+  }, []);
 
-//   const handleStepChange = (step: number) => {
-//     setActiveStep(step);
-//   };
+  const visibleTestimonials = [
+    testimonials[currentIndex],
+    testimonials[(currentIndex + 1) % testimonials.length],
+  ];
 
-//   return (
-//     <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
-//       <Paper
-//         square
-//         elevation={0}
-//         sx={{
-//           display: "flex",
-//           alignItems: "center",
-//           height: 50,
-//           pl: 2,
-//           bgcolor: "background.default",
-//         }}
-//       >
-//         <Typography>{images[activeStep].label}</Typography>
-//       </Paper>
-//       <Carousel
-//         selectedItem={activeStep}
-//         onChange={handleStepChange}
-//         showThumbs={false}
-//         showArrows={false}
-//         showStatus={false}
-//         autoPlay
-//         infiniteLoop
-//       >
-//         {images.map((step, index) => (
-//           <div key={step.label}>
-//             <img src={step.imgPath} alt={step.label} />
-//           </div>
-//         ))}
-//       </Carousel>
-//       <MobileStepper
-//         steps={maxSteps}
-//         position="static"
-//         activeStep={activeStep}
-//         nextButton={
-//           <Button
-//             size="small"
-//             onClick={handleNext}
-//             disabled={activeStep === maxSteps - 1}
-//           >
-//             Next
-//             {theme.direction === "rtl" ? (
-//               <KeyboardArrowLeft />
-//             ) : (
-//               <KeyboardArrowRight />
-//             )}
-//           </Button>
-//         }
-//         backButton={
-//           <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-//             {theme.direction === "rtl" ? (
-//               <KeyboardArrowRight />
-//             ) : (
-//               <KeyboardArrowLeft />
-//             )}
-//             Back
-//           </Button>
-//         }
-//       />
-//     </Box>
-//   );
-// }
+  return (
+    <Box
+      sx={{
+        backgroundAttachment: "fixed",
+        position: "relative",
+        height: "auto",
+        width: "100%",
+        backgroundImage: `url(${bgImage.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        overflow: "hidden",
+        mb: 5,
+        pt: 4,
+      }}
+    >
+      <Container
+        sx={{
+          textAlign: "center",
 
-// export default StudentTestimonial;
+          mb: 6,
+        }}
+      >
+        <Typography
+          color="#132361"
+          sx={{
+            textAlign: "center",
+            fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
+            fontWeight: { xs: 800, md: 800 },
+            lineHeight: { xs: "1", md: "1.2" },
+            mb: 3,
+          }}
+          component="h1"
+        >
+          Our Happy <span style={{ color: "#ffC53A" }}>Students</span>
+        </Typography>
+
+        {/* Testimonial Grid */}
+        <Grid container spacing={4}>
+          {visibleTestimonials.map((testimonial, index) => (
+            <Grid item xs={12} md={6} key={index}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundColor: "#fff",
+                  padding: "1.5rem",
+                  borderRadius: "12px",
+                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+                  textAlign: "left",
+                  transition: "transform 0.3s ease",
+                  "&:hover": {
+                    transform: "translateY(-5px)",
+                  },
+                }}
+              >
+                {/* Image on Left */}
+                <Avatar
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  sx={{
+                    width: 100,
+                    height: 100,
+                    border: "4px solid #fff",
+                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                    mr: 3,
+                    flexShrink: 0,
+                  }}
+                />
+
+                {/* Text Content on Right */}
+                <Box>
+                  <Typography variant="h6" fontWeight="bold" sx={{ mb: 0.5 }}>
+                    {testimonial.name}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    sx={{ mb: 1 }}
+                  >
+                    {testimonial.role}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="textSecondary"
+                    sx={{
+                      fontSize: "0.95rem",
+                      textAlign: "justify",
+                    }}
+                  >
+                    {testimonial.text}
+                  </Typography>
+                </Box>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+
+        {/* Navigation Dots */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            mt: 4,
+          }}
+        >
+          {testimonials.map((_, index) => (
+            <Box
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              sx={{
+                width: 12,
+                height: 12,
+                borderRadius: "50%",
+                backgroundColor: currentIndex === index ? "#132361" : "#ddd",
+                mx: 0.5,
+                cursor: "pointer",
+                transition: "background-color 0.3s ease",
+              }}
+            />
+          ))}
+        </Box>
+      </Container>
+    </Box>
+  );
+};
+
+export default StudentTestimonial;

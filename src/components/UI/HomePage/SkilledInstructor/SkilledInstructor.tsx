@@ -93,7 +93,6 @@ const SkilledInstructors: React.FC = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           overflow: "hidden",
-          mb: 5,
         }}
       >
         <Container>
@@ -101,7 +100,7 @@ const SkilledInstructors: React.FC = () => {
             color="#132361"
             sx={{
               textAlign: "center",
-              fontSize: { xs: "2rem", md: "3rem" },
+              fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
               fontWeight: { xs: 800, md: 800 },
               lineHeight: { xs: "1", md: "1.2" },
               mt: 5,
@@ -109,7 +108,7 @@ const SkilledInstructors: React.FC = () => {
             }}
             component="h1"
           >
-            Our Skilled Instructors
+            Our Skilled <span style={{ color: "#ffC53A" }}>Instructors</span>
           </Typography>
 
           <Grid container spacing={3} justifyContent="center">
